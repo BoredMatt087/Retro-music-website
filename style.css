@@ -1,0 +1,150 @@
+/* ===== GENERAL PAGE ===== */
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  background-color: #f8e9d2; /* background of page */
+  color: #000;
+}
+
+/* ===== HEADER AND MENU ===== */
+header {
+  display: flex;
+  align-items: center;
+  background-color: #d68a00; /* menu background */
+  padding: 0 20px;
+}
+
+.logo img {
+  width: 100px;
+  height: 100px;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+  padding: 0;
+}
+
+.menu li {
+  margin: 0 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* ===== DROPDOWN MENU ===== */
+/* dropdown parent */
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dropdown-content {
+  position: absolute;
+}
+
+/* small styling for the toggle button */
+.dropdown-toggle {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 1;
+}
+
+/* dropdown menu hidden by default */
+.dropdown-content {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 190px;
+  padding: 6px 0;
+  margin: 0;
+  list-style: none;
+  background-color: #7a8450;
+  border-radius: 6px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+  z-index: 200;
+  max-height: 0;              /* COLLAPSED */
+  overflow: hidden;
+  transition: max-height 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* visible state */
+.dropdown-content.open {
+  max-height: 400px;          /* large enough for contents */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* items */
+.dropdown-content li { margin: 0; }
+.dropdown-content a {
+  display: block;
+  padding: 8px 14px;
+  color: #fff;
+  text-decoration: none;
+}
+.dropdown-content a:hover,
+.dropdown-content a:focus {
+  background-color: #d68a00;
+  color: #000;
+}
+
+/* ensure the toggle sits nicely with the parent link */
+.dropdown-link { text-decoration: none; color: black; font-family: 'Lora', serif; font-size: 18px; }
+
+/* small responsiveness: stack toggle and link on small screens */
+@media (max-width: 600px) {
+  .dropdown { gap: 4px; }
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+  text-align: center;
+  padding: 20px;
+}
+
+.main-box {
+  background-color: #7a8450; /* main box background */
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.image-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.image-row img {
+  border: 4px solid #d68a00;
+  border-radius: 8px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: #d68a00;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+}

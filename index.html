@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro Music</title>
+
+  <!-- Link your stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Link your script -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+<header>
+ <nav class="menu" aria-label="Main navigation">
+  <ul>
+    <li><a href="index.html">Homepage</a></li>
+
+    <!-- Dropdown using separate toggle button (accessible) -->
+    <li class="dropdown" id="songsDropdown">
+      <!-- Real link to the songs page -->
+      <a href="songs.html" class="dropdown-link">Songs</a>
+
+      <!-- Button toggles the submenu; screen readers see aria-expanded -->
+      <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="songsMenu" title="Open Songs menu">
+        ▾
+      </button>
+
+      <ul class="dropdown-content" id="songsMenu" role="menu" aria-labelledby="songsDropdown" aria-hidden="true">
+        <li role="none"><a role="menuitem" href="songs.html#1950s">1950s</a></li>
+        <li role="none"><a role="menuitem" href="songs.html#1960s">1960s</a></li>
+        <li role="none"><a role="menuitem" href="songs.html#1970s">1970s</a></li>
+        <li role="none"><a role="menuitem" href="songs.html#1980s">1980s</a></li>
+      </ul>
+    </li>
+
+    <li><a href="bands.html">Bands</a></li>
+  </ul>
+</nav>
+</header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+    <section class="main-box">
+      <h2>Page Text Introducing Website</h2>
+      <p>Welcome to Retro Music! Explore hits from the 1950s to 1980s, discover famous bands, and enjoy classic performances.</p>
+    </section>
+
+    <section class="image-row">
+      <img src="images/elvis.jpg" alt="Elvis" width="400" height="300">
+      <img src="images/beatles.jpg" alt="The Beatles" width="400" height="300">
+      <img src="images/queen.jpg" alt="Queen" width="400" height="300">
+    </section>
+
+    <section class="main-box">
+      <h2>More About Retro Music</h2>
+      <p>Learn about different songs and eras through our dedicated pages and videos below.</p>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 Retro Music</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
