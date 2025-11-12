@@ -1,144 +1,127 @@
-/* ===== GENERAL PAGE ===== */
+/* ===== GENERAL ===== */
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
-  background-color: #f8e9d2; /* background of page */
+  background-color: #f8e9d2;
   color: #000;
 }
 
-/* ===== HEADER AND MENU ===== */
-header {
+/* ===== NAVIGATION BAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #d68a00;
+  color: #000;
   display: flex;
   align-items: center;
-  background-color: #d68a00; /* menu background */
-  padding: 0 20px;
+  justify-content: space-between;
+  padding: 10px 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-.logo img {
-  width: 100px;
-  height: 100px;
-}
-
-.menu ul {
-  list-style: none;
+.nav-left {
   display: flex;
-  margin-left: auto;
-  padding: 0;
+  align-items: center;
+  gap: 10px;
 }
 
-.menu li {
-  margin: 0 20px;
+.nav-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
 
-.menu a {
-  text-decoration: none;
-  color: black;
+.site-title {
   font-family: 'Lora', serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
 }
 
-.menu a:hover {
+.nav-links a {
+  margin: 0 10px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Lora', serif;
+}
+
+.nav-links a:hover {
   text-decoration: underline;
 }
 
-/* ===== DROPDOWN MENU ===== */
-/* dropdown parent */
-.dropdown {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.dropdown-content {
-  position: absolute;
-}
-
-/* small styling for the toggle button */
-.dropdown-toggle {
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 6px;
-  line-height: 1;
-}
-
-/* dropdown menu hidden by default */
-.dropdown-content {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  min-width: 190px;
-  padding: 6px 0;
-  margin: 0;
-  list-style: none;
-  background-color: #7a8450;
+.nav-search input {
+  padding: 6px 10px;
   border-radius: 6px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.18);
-  z-index: 200;
-  max-height: 0;              /* COLLAPSED */
-  overflow: hidden;
-  transition: max-height 0.25s ease, opacity 0.25s ease;
-  opacity: 0;
-  pointer-events: none;
+  border: 1px solid #7a8450;
+  background-color: #fdf4e3;
+  width: 150px;
+}
+.nav-search input:focus {
+  outline: none;
+  border-color: #7a8450;
+  box-shadow: 0 0 4px #7a8450;
 }
 
-/* visible state */
-.dropdown-content.open {
-  max-height: 400px;          /* large enough for contents */
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* items */
-.dropdown-content li { margin: 0; }
-.dropdown-content a {
-  display: block;
-  padding: 8px 14px;
+/* ===== HEADER ===== */
+.page-header {
+  margin-top: 100px; /* creates space under fixed nav */
+  text-align: center;
+  background-color: #7a8450;
   color: #fff;
+  padding: 30px 15px;
+}
+
+.page-header h1 {
+  font-family: 'Lora', serif;
+  font-size: 32px;
+}
+
+/* ===== MAIN GRID ===== */
+.homepage-grid {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Sidebar sections */
+.sidebar {
+  background-color: #7a8450;
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.sidebar h2 {
+  font-family: 'Lora', serif;
+}
+
+.sidebar a {
+  color: #feb21a;
   text-decoration: none;
 }
-.dropdown-content a:hover,
-.dropdown-content a:focus {
-  background-color: #d68a00;
-  color: #000;
+
+.sidebar a:hover {
+  text-decoration: underline;
 }
 
-/* ensure the toggle sits nicely with the parent link */
-.dropdown-link { text-decoration: none; color: black; font-family: 'Lora', serif; font-size: 18px; }
-
-/* small responsiveness: stack toggle and link on small screens */
-@media (max-width: 600px) {
-  .dropdown { gap: 4px; }
-}
-
-/* ===== MAIN CONTENT ===== */
-main {
-  text-align: center;
+/* Content section */
+.content {
+  background-color: #fdf4e3;
   padding: 20px;
-}
-
-.main-box {
-  background-color: #7a8450; /* main box background */
-  padding: 20px;
-  margin: 20px auto;
-  width: 80%;
   border-radius: 10px;
-  color: #fff;
 }
 
-.image-row {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.intro-text h2 {
+  font-family: 'Lora', serif;
 }
 
-.image-row img {
-  border: 4px solid #d68a00;
-  border-radius: 8px;
+.main-image img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 /* ===== FOOTER ===== */
@@ -146,5 +129,206 @@ footer {
   background-color: #d68a00;
   color: #000;
   text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+footer a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 800px) {
+  .homepage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== SEARCH BAR STYLING ===== */
+#searchBar {
+  width: 80%;
+  max-width: 500px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #d68a00;
+  border-radius: 8px;
+  margin: 10px auto 20px auto;
+  display: block;
+  background-color: #fdf4e3;
+}
+
+#searchBar:focus {
+  outline: none;
+  border-color: #7a8450;
+}
+
+/* Style the list items being filtered */
+.song-item {
+  background-color: #7a8450;
+  color: #fff;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 8px;
+  width: 80%;
+  transition: 0.3s ease;
+}
+/* ===== SEARCH BAR STYLING ===== */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+  flex-wrap: wrap;
+}
+
+#searchBar {
+  width: 70%;
+  max-width: 500px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #d68a00;
+  border-radius: 8px;
+  background-color: #fdf4e3;
+  transition: border-color 0.3s ease;
+}
+
+#searchBar:focus {
+  outline: none;
+  border-color: #7a8450;
+}
+
+/* Clear button */
+#clearSearch {
+  background-color: #d68a00;
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#clearSearch:hover {
+  background-color: #7a8450;
+  color: #fff;
+}
+
+/* Song boxes */
+.song-item {
+  background-color: #7a8450;
+  color: #fff;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 8px;
+  width: 80%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.song-item.hide {
+  display: none;
+}
+
+/* Highlighted text */
+mark {
+  background-color: #feb21a;
+  color: #000;
+  font-weight: bold;
+}
+
+/* No results message */
+#noResults {
+  text-align: center;
+  font-weight: bold;
+  color: #d68a00;
+  font-size: 18px;
+  margin-top: 20px;
+}
+/* ===== DROPDOWN FILTER STYLING ===== */
+#decadeDropdown {
+  background-color: #fdf4e3;
+  border: 2px solid #d68a00;
+  border-radius: 8px;
   padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+#decadeDropdown:focus {
+  outline: none;
+  border-color: #7a8450;
+}
+
+/* Accessibility helper for hidden label */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+/* ===== ACCESSIBILITY BUTTONS ===== */
+.accessibility button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  background-color: #d68a00;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.accessibility button:hover,
+.accessibility button:focus {
+  background-color: #feb21a;
+  outline: 2px solid #7a8450;
+}
+
+/* ===== HIGH-CONTRAST MODE ===== */
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast a,
+.high-contrast p,
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3 {
+  color: #fff !important;
+}
+
+.high-contrast .sidebar,
+.high-contrast .content,
+.high-contrast .page-header,
+.high-contrast .navbar,
+.high-contrast footer {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+/* ===== LARGE-TEXT MODE ===== */
+.large-text {
+  font-size: 1.2em;
+}
+
+/* ===== FOCUS RING FOR KEYBOARD NAVIGATION ===== */
+:focus {
+  outline: 3px solid #feb21a;
+  outline-offset: 3px;
 }

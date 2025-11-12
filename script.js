@@ -59,3 +59,224 @@ document.addEventListener('DOMContentLoaded', () => {
   // optional: close on window resize to avoid stuck states
   window.addEventListener('resize', () => setOpen(false));
 });
+// ===== SEARCH + DROPDOWN FILTER FUNCTIONALITY =====
+document.addEventListener("DOMContentLoaded", function () {
+  const searchBar = document.getElementById("searchBar");
+  const songItems = document.querySelectorAll(".song-item");
+  const noResults = document.getElementById("noResults");
+  const clearBtn = document.getElementById("clearSearch");
+  const decadeDropdown = document.getElementById("decadeDropdown");
+
+  if (!searchBar) return; // only run on songs.html
+
+  function removeHighlights() {
+    songItems.forEach(item => {
+      item.innerHTML = item.innerHTML.replace(/<mark>|<\/mark>/g, "");
+    });
+  }
+
+  function performSearch() {
+    const query = searchBar.value.toLowerCase().trim();
+    const decadeFilter = decadeDropdown ? decadeDropdown.value.toLowerCase() : "";
+    let anyVisible = false;
+
+    removeHighlights();
+
+    songItems.forEach(item => {
+      const keywords = item.dataset.keywords.toLowerCase();
+      const text = item.textContent.toLowerCase();
+      const matchesQuery = query === "" || keywords.includes(query) || text.includes(query);
+      const matchesDecade = decadeFilter === "" || keywords.includes(decadeFilter);
+
+      if (matchesQuery && matchesDecade) {
+        item.style.display = "block";
+        anyVisible = true;
+
+        // highlight search text
+        if (query !== "") {
+          const regex = new RegExp(`(${query})`, "gi");
+          item.innerHTML = item.innerHTML.replace(regex, "<mark>$1</mark>");
+        }
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    noResults.hidden = anyVisible || (query === "" && decadeFilter === "");
+  }
+
+  // events
+  searchBar.addEventListener("input", performSearch);
+  if (decadeDropdown) decadeDropdown.addEventListener("change", performSearch);
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      searchBar.value = "";
+      if (decadeDropdown) decadeDropdown.value = "";
+      songItems.forEach(item => (item.style.display = "block"));
+      removeHighlights();
+      noResults.hidden = true;
+    });
+  }
+});
+// ===== TOP NAVBAR SEARCH (HOME PAGE) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const navSearch = document.getElementById("navSearch");
+  if (!navSearch) return; // stops running on other pages
+
+  const searchableSections = document.querySelectorAll("main, header, footer, aside");
+
+  function clearHighlights() {
+    searchableSections.forEach(section => {
+      section.innerHTML = section.innerHTML.replace(/<mark>|<\/mark>/g, "");
+    });
+  }
+
+  function performNavSearch() {
+    const query = navSearch.value.trim().toLowerCase();
+    clearHighlights();
+
+    if (query === "") return;
+
+    let firstMatch = null;
+
+    searchableSections.forEach(section => {
+      const regex = new RegExp(`(${query})`, "gi");
+      const hasMatch = section.textContent.toLowerCase().includes(query);
+
+      if (hasMatch) {
+        section.innerHTML = section.innerHTML.replace(regex, "<mark>$1</mark>");
+        if (!firstMatch) firstMatch = section; // remember the first result
+      }
+    });
+
+    // smooth-scroll to the first highlighted match
+    if (firstMatch) {
+      firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+
+  // run search when user presses Enter
+  navSearch.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      performNavSearch();
+    }
+  });
+
+  // clear highlights when the field is cleared
+  navSearch.addEventListener("input", () => {
+    if (navSearch.value === "") clearHighlights();
+  });
+});
+// ===== GLOBAL NAVBAR SEARCH (Works Across All Pages) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const navSearch = document.getElementById("navSearch");
+  if (!navSearch) return;
+
+  const searchableSections = document.querySelectorAll("main, header, footer, aside");
+
+  // Clear old highlights
+  function clearHighlights() {
+    searchableSections.forEach(section => {
+      section.innerHTML = section.innerHTML.replace(/<mark>|<\/mark>/g, "");
+    });
+  }
+
+  // Highlight + scroll on current page
+  function performHighlight(query) {
+    let firstMatch = null;
+    const regex = new RegExp(`(${query})`, "gi");
+
+    searchableSections.forEach(section => {
+      if (section.textContent.toLowerCase().includes(query)) {
+        section.innerHTML = section.innerHTML.replace(regex, "<mark>$1</mark>");
+        if (!firstMatch) firstMatch = section;
+      }
+    });
+
+    if (firstMatch) {
+      firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+
+  // Handle search logic
+  function handleSearch() {
+    const query = navSearch.value.trim().toLowerCase();
+    clearHighlights();
+
+    if (query === "") return;
+
+    // ======== Cross-page keywords ========
+    const redirects = {
+      "song": "songs.html",
+      "songs": "songs.html",
+      "band": "bands.html",
+      "bands": "bands.html",
+      "1950": "songs.html#1950s",
+      "1960": "songs.html#1960s",
+      "1970": "songs.html#1970s",
+      "1980": "songs.html#1980s",
+      "contact": "bands.html",
+      "form": "index.html#message"
+    };
+
+    // Check for redirect match
+    for (const key in redirects) {
+      if (query.includes(key)) {
+        window.location.href = redirects[key];
+        return;
+      }
+    }
+
+    // Otherwise, just highlight matches on this page
+    performHighlight(query);
+  }
+
+  // Press Enter to search
+  navSearch.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSearch();
+    }
+  });
+
+  // Remove highlights when input cleared
+  navSearch.addEventListener("input", () => {
+    if (navSearch.value === "") clearHighlights();
+  });
+});
+// ===== ACCESSIBILITY FEATURES =====
+document.addEventListener("DOMContentLoaded", () => {
+  const contrastBtn = document.getElementById("toggleContrast");
+  const increaseBtn = document.getElementById("increaseText");
+  const decreaseBtn = document.getElementById("decreaseText");
+
+  // Safety check: only run on pages with these buttons
+  if (!contrastBtn) return;
+
+  // 1️⃣ High-contrast mode
+  contrastBtn.addEventListener("click", () => {
+    document.body.classList.toggle("high-contrast");
+  });
+
+  // 2️⃣ Text size controls
+  let currentScale = 1;
+
+  function updateTextSize() {
+    document.body.style.fontSize = `${currentScale}em`;
+  }
+
+  increaseBtn.addEventListener("click", () => {
+    if (currentScale < 1.6) {
+      currentScale += 0.1;
+      updateTextSize();
+    }
+  });
+
+  decreaseBtn.addEventListener("click", () => {
+    if (currentScale > 0.8) {
+      currentScale -= 0.1;
+      updateTextSize();
+    }
+  });
+});

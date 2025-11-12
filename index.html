@@ -1,71 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Retro Music</title>
+  <title>Retro Music - Home</title>
 
-  <!-- Link your stylesheet -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Link your script -->
   <script src="script.js" defer></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Raleway&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <!-- ===== HEADER ===== -->
-<header>
- <nav class="menu" aria-label="Main navigation">
-  <ul>
-    <li><a href="index.html">Homepage</a></li>
+  <!-- ===== FIXED NAVIGATION BAR ===== -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="Retro Music Logo" class="nav-logo">
+      <span class="site-title">Retro Music</span>
+    </div>
 
-    <!-- Dropdown using separate toggle button (accessible) -->
-    <li class="dropdown" id="songsDropdown">
-      <!-- Real link to the songs page -->
-      <a href="songs.html" class="dropdown-link">Songs</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="songs.html">Songs</a>
+      <a href="bands.html">Bands</a>
+    </div>
 
-      <!-- Button toggles the submenu; screen readers see aria-expanded -->
-      <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="songsMenu" title="Open Songs menu">
-        ▾
-      </button>
+    <!-- Small search bar in nav -->
+    <div class="nav-search">
+      <input type="text" id="navSearch" placeholder="Search site..." aria-label="Search the website">
+    </div>
+  </nav>
 
-      <ul class="dropdown-content" id="songsMenu" role="menu" aria-labelledby="songsDropdown" aria-hidden="true">
-        <li role="none"><a role="menuitem" href="songs.html#1950s">1950s</a></li>
-        <li role="none"><a role="menuitem" href="songs.html#1960s">1960s</a></li>
-        <li role="none"><a role="menuitem" href="songs.html#1970s">1970s</a></li>
-        <li role="none"><a role="menuitem" href="songs.html#1980s">1980s</a></li>
-      </ul>
-    </li>
-
-    <li><a href="bands.html">Bands</a></li>
-  </ul>
-</nav>
-</header>
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <h1>Welcome to Retro Music</h1>
+    <p>Celebrating the sounds of the 1950s–1980s. Explore iconic artists, discover legendary albums, and relive the golden era of music.</p>
+  </header>
 
   <!-- ===== MAIN CONTENT ===== -->
-  <main>
-    <section class="main-box">
-      <h2>Page Text Introducing Website</h2>
-      <p>Welcome to Retro Music! Explore hits from the 1950s to 1980s, discover famous bands, and enjoy classic performances.</p>
-    </section>
+  <main class="homepage-grid">
+    <!-- Left column -->
+    <aside class="sidebar">
+      <section class="accessibility">
+        <h2>Accessibility Options</h2>
+        <ul>
+          <li><button id="toggleContrast">Toggle High-Contrast Mode</button></li>
+          <li><button id="increaseText">Increase Text Size</button></li>
+          <li><button id="decreaseText">Decrease Text Size</button></li>
+        </ul>
+        <p class="accessibility-note">
+        Use these controls to improve visibility and readability.
+        </p>
+      </section>
 
-    <section class="image-row">
-      <img src="images/elvis.jpg" alt="Elvis" width="400" height="300">
-      <img src="images/beatles.jpg" alt="The Beatles" width="400" height="300">
-      <img src="images/queen.jpg" alt="Queen" width="400" height="300">
-    </section>
+      <section class="webform">
+        <h2>Contact Us</h2>
+        <form>
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" required><br>
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" required><br>
+          <label for="message">Message:</label><br>
+          <textarea id="message" name="message" rows="3" required></textarea><br>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </aside>
 
-    <section class="main-box">
-      <h2>More About Retro Music</h2>
-      <p>Learn about different songs and eras through our dedicated pages and videos below.</p>
+    <!-- Main text and image -->
+    <section class="content">
+      <article class="intro-text">
+        <h2>About the Website</h2>
+        <p>This website showcases music from the 1950s to the 1980s — exploring how styles evolved through rock, funk, disco, and pop. You can browse songs, read about bands, and even submit your own content requests.</p>
+      </article>
+
+      <figure class="main-image">
+        <img src="images/retro-band.jpg" alt="Retro music performance">
+        <figcaption>Experience the timeless classics that defined generations.</figcaption>
+      </figure>
     </section>
   </main>
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    <p>&copy; 2025 Retro Music</p>
+    <p>Temp filler content for the footer.</p>
+    <p>Follow us:
+      <a href="https://www.facebook.com/aquinascollegeUK" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/aquinascollegeuk/" target="_blank">Instagram</a> |
+      <a href="https://www.aquinas.ac.uk" target="_blank">Aquinas College Website</a>
+    </p>
   </footer>
-
-  <script src="js/script.js"></script>
 </body>
 </html>
