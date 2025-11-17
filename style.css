@@ -20,6 +20,23 @@ body {
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
+/* ===== NAVIGATION MENU FONT ===== */
+.nav-links a,
+.navbar .nav-links a,
+.menu ul li a,
+.dropdown-link {
+  font-family: 'Lora', serif; /* or 'Raleway', sans-serif */
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+  transition: 0.2s ease;
+}
+.nav-links a:hover,
+.menu ul li a:hover {
+  text-decoration: underline;
+  color: #7a8450;
+}
 
 .nav-left {
   display: flex;
@@ -331,4 +348,47 @@ mark {
 :focus {
   outline: 3px solid #feb21a;
   outline-offset: 3px;
+}
+/* ===== SOCIAL MEDIA ICONS ===== */
+.social-icons {
+  margin: 10px 0;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  color: #000; /* default icon color */
+  font-size: 28px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-icons a:hover {
+  color: #7a8450; /* hover color (retro olive) */
+  transform: scale(1.2); /* pop-out effect */
+}
+/* ===== BACK TO TOP BUTTON ===== */
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 16px;
+  background-color: #d68a00;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+}
+
+#backToTop:hover {
+  background-color: #feb21a;
+}
+
+#backToTop.show {
+  opacity: 1;
+  transform: translateY(0);
 }
