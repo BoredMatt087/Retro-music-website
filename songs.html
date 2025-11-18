@@ -33,7 +33,7 @@
     <p>Use the search bar or the dropdown menu to quickly find a decade or artist.</p>
 
     <!-- ===== Combined Navigation ===== -->
-    <div class="search-container">
+    <!--<div class="search-container">
       <label for="searchBar" class="visually-hidden">Search</label>
       <input 
         type="text" 
@@ -42,7 +42,7 @@
         aria-label="Search for a decade or artist">
       <button id="clearSearch" aria-label="Clear search">Clear</button>
 
-      <!-- New dropdown filter -->
+       New dropdown filter recomment
       <select id="decadeDropdown" aria-label="Filter by decade">
         <option value="">Filter by Decade</option>
         <option value="1950s">1950s</option>
@@ -51,30 +51,37 @@
         <option value="1980s">1980s</option>
       </select>
     </div>
-  </section>
+  </section>-->
 
-  <!-- ===== Song List ===== -->
-  <section id="songList">
-    <div class="song-item" data-keywords="1950s elvis presley rock and roll">
-      <h3>1950s</h3>
-      <p>Rock ’n’ roll hits from Elvis Presley, Chuck Berry, and Little Richard.</p>
+  <!-- ===== Song List Accordion ===== -->
+<aside class="left-accordion">
+  <div class="accordion-item">
+    <button class="accordion-header">1950s</button>
+    <div class="accordion-content">
+      <p>Rock n' roll hits from Elvis Presley, Chuck Berry, and Little Richard.</p>
     </div>
+  </div>
 
-    <div class="song-item" data-keywords="1960s the beatles rolling stones">
-      <h3>1960s</h3>
+  <div class="accordion-item">
+    <button class="accordion-header">1960s</button>
+    <div class="accordion-content">
       <p>British invasion with The Beatles, The Rolling Stones, and The Who.</p>
     </div>
+  </div>
 
-    <div class="song-item" data-keywords="1970s queen abba disco">
-      <h3>1970s</h3>
+  <div class="accordion-item">
+    <button class="accordion-header">1970s</button>
+    <div class="accordion-content">
       <p>Disco and rock classics by Queen, ABBA, and Fleetwood Mac.</p>
     </div>
+  </div>
 
-    <div class="song-item" data-keywords="1980s madonna michael jackson pop">
-      <h3>1980s</h3>
+  <div class="accordion-item">
+    <button class="accordion-header">1980s</button>
+    <div class="accordion-content">
       <p>Pop and synth hits from Madonna, Michael Jackson, and Duran Duran.</p>
     </div>
-  </section>
+  </div>
+</aside>
 
-  <p id="noResults" hidden>No results found. Try searching a different decade or artist.</p>
 </main>

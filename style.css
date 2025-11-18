@@ -392,3 +392,46 @@ mark {
   opacity: 1;
   transform: translateY(0);
 }
+/* Accordion Sidebar Layout */
+.left-accordion {
+  width: 600px;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-right: 2px solid #ccc;
+  position: fixed;
+  top: 70px; /* Adjust based on nav-bar height */
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+/* Accordion Buttons */
+.accordion-header {
+  background-color: #134686;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 18px;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+.accordion-header:hover {
+  background-color: #ED3F27;
+}
+
+/* Accordion Content */
+.accordion-content {
+  background-color: #FDF4E3;
+  padding: 10px;
+  display: none;
+  border-left: 3px solid #FEB21A;
+}
+
+/* Open state */
+.accordion-content.open {
+  display: block;
+}

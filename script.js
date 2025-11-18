@@ -300,3 +300,20 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
+// Accordion toggle
+const headers = document.querySelectorAll(".accordion-header");
+
+headers.forEach(header => {
+  header.addEventListener("click", () => {
+    const content = header.nextElementSibling;
+
+    // Close others when opening one (optional)
+    document.querySelectorAll(".accordion-content").forEach(item => {
+      if (item != content) item.classList.remove("open");
+    });
+
+    // Toggle current section
+    content.classList.toggle("open");
+  });
+});
+
