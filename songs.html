@@ -1,4 +1,5 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<main>
-  <body>
+
+<body>
+
   <!-- ===== FIXED NAVIGATION BAR ===== -->
   <nav class="navbar">
     <div class="nav-left">
@@ -27,61 +29,92 @@
       <input type="text" id="navSearch" placeholder="Search site..." aria-label="Search the website">
     </div>
   </nav>
-  </body>
-  <section class="main-box">
-    <h2>Explore Retro Songs by Decade</h2>
-    <p>Use the search bar or the dropdown menu to quickly find a decade or artist.</p>
 
-    <!-- ===== Combined Navigation ===== -->
-    <!--<div class="search-container">
-      <label for="searchBar" class="visually-hidden">Search</label>
-      <input 
-        type="text" 
-        id="searchBar" 
-        placeholder="Search for a decade or artist..." 
-        aria-label="Search for a decade or artist">
-      <button id="clearSearch" aria-label="Clear search">Clear</button>
+  <main>
 
-       New dropdown filter recomment
-      <select id="decadeDropdown" aria-label="Filter by decade">
-        <option value="">Filter by Decade</option>
-        <option value="1950s">1950s</option>
-        <option value="1960s">1960s</option>
-        <option value="1970s">1970s</option>
-        <option value="1980s">1980s</option>
-      </select>
-    </div>
-  </section>-->
+    <!-- ===== MAIN HEADER ===== -->
+    <section class="main-box">
+      <h1>H1 not visibile?</h1>
+      <h2>H2</h2>
+      <p>Filler text (H2?).</p>
+      <h3>H3</h3>
+      <p>Filler text.</p>
 
-  <!-- ===== Song List Accordion ===== -->
-<aside class="left-accordion">
-  <div class="accordion-item">
-    <button class="accordion-header">1950s</button>
-    <div class="accordion-content">
-      <p>Rock n' roll hits from Elvis Presley, Chuck Berry, and Little Richard.</p>
-    </div>
-  </div>
+      <!-- ===== Combined Search Navigation ===== -->
+      <div class="search-container">
 
-  <div class="accordion-item">
-    <button class="accordion-header">1960s</button>
-    <div class="accordion-content">
-      <p>British invasion with The Beatles, The Rolling Stones, and The Who.</p>
-    </div>
-  </div>
+        <label for="searchBar" class="visually-hidden">Search</label>
 
-  <div class="accordion-item">
-    <button class="accordion-header">1970s</button>
-    <div class="accordion-content">
-      <p>Disco and rock classics by Queen, ABBA, and Fleetwood Mac.</p>
-    </div>
-  </div>
+        <input 
+          type="text" 
+          id="searchBar"
+          placeholder="Search for a decade or artist..."
+          aria-label="Search for a decade or artist">
 
-  <div class="accordion-item">
-    <button class="accordion-header">1980s</button>
-    <div class="accordion-content">
-      <p>Pop and synth hits from Madonna, Michael Jackson, and Duran Duran.</p>
-    </div>
-  </div>
-</aside>
+        <button id="clearSearch" aria-label="Clear search">Clear</button>
 
-</main>
+        <select id="decadeDropdown" aria-label="Filter by decade">
+          <option value="">Filter by Decade</option>
+          <option value="1950s">1950s</option>
+          <option value="1960s">1960s</option>
+          <option value="1970s">1970s</option>
+          <option value="1980s">1980s</option>
+        </select>
+
+      </div>
+      <p>Test text</p>
+    </section>
+
+    <!-- ===== LEFT ACCORDION SIDEBAR ===== -->
+    <aside class="left-accordion">
+
+      <div id="1950s" class="accordion-item">
+        <button class="accordion-header">1950s</button>
+        <div class="accordion-content">
+          <p>Rock n' roll hits from Elvis Presley, Chuck Berry, and Little Richard.</p>
+        </div>
+      </div>
+
+      <div id="1960s" class="accordion-item">
+        <button class="accordion-header">1960s</button>
+        <div class="accordion-content">
+          <p>British invasion with The Beatles, The Rolling Stones, and The Who.</p>
+        </div>
+      </div>
+
+      <div id="1970s" class="accordion-item">
+        <button class="accordion-header">1970s</button>
+        <div class="accordion-content">
+          <p>Disco and rock classics by Queen, ABBA, and Fleetwood Mac.</p>
+        </div>
+      </div>
+
+      <div id="1980s" class="accordion-item">
+        <button class="accordion-header">1980s</button>
+        <div class="accordion-content">
+          <p>Pop and synth hits from Madonna, Michael Jackson, and Duran Duran.</p>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+</body>
+</html>
+<!-- TO do 
+ Songs.html
+add id to each decade section for search and filter.
+between div and class accordion item add id="1950s" 
+Below Main header comment place text.
+
+Whole
+add actual text for most shit
+add images?
+
+
+CSS
+fix width of accordion so it doesnt overlap with main content  - bottom of css
+find better fitting colour for accordion?
+
+-->

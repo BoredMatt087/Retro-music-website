@@ -394,7 +394,7 @@ mark {
 }
 /* Accordion Sidebar Layout */
 .left-accordion {
-  width: 600px;
+  width: 300px;
   padding: 15px;
   background-color: #f8f8f8;
   border-right: 2px solid #ccc;
@@ -407,7 +407,7 @@ mark {
 
 /* Accordion Buttons */
 .accordion-header {
-  background-color: #134686;
+  background-color: #138619;
   color: white;
   padding: 10px;
   width: 100%;
@@ -420,7 +420,7 @@ mark {
 }
 
 .accordion-header:hover {
-  background-color: #ED3F27;
+  background-color: #0d641b;
 }
 
 /* Accordion Content */
@@ -434,4 +434,9 @@ mark {
 /* Open state */
 .accordion-content.open {
   display: block;
+}
+.main-box {
+  margin-left: 400px;   /* space so content does NOT overlap accordion */
+  padding: 20px;
+  width: calc(100% - 400px);
 }
