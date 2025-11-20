@@ -407,7 +407,7 @@ mark {
 
 /* Accordion Buttons */
 .accordion-header {
-  background-color: #138619;
+  background-color: #7a8450;
   color: white;
   padding: 10px;
   width: 100%;
@@ -420,7 +420,7 @@ mark {
 }
 
 .accordion-header:hover {
-  background-color: #0d641b;
+  background-color: #7a8450;
 }
 
 /* Accordion Content */
