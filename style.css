@@ -338,6 +338,88 @@ mark {
   color: #fff !important;
   border-color: #fff !important;
 }
+/* ==== Gallery grid ==== */
+.band-gallery h2 {
+  font-family: 'Lora', serif;
+  margin-bottom: 15px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* ==== Fullscreen Modal ==== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  padding: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+}
+
+.modal-content {
+  display: block;
+  margin: auto;
+  max-height: 80vh;
+  max-width: 80vw;
+  border-radius: 12px;
+}
+
+.close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+#caption {
+  text-align: center;
+  color: #feb21a;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* ==== navigation buttons (left/right) ==== */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #d68a00;
+  border: none;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-size: 24px;
+  color: black;
+  border-radius: 6px;
+}
+
+#prevBtn { left: 30px; }
+#nextBtn { right: 30px; }
+
+.nav-btn:hover {
+  background: #7a8450;
+  color: white;
+}
+
 
 /* ===== LARGE-TEXT MODE ===== */
 .large-text {
@@ -407,7 +489,7 @@ mark {
 
 /* Accordion Buttons */
 .accordion-header {
-  background-color: #138619;
+  background-color: #7a8450;
   color: white;
   padding: 10px;
   width: 100%;
@@ -420,7 +502,7 @@ mark {
 }
 
 .accordion-header:hover {
-  background-color: #0d641b;
+  background-color: #7a8450;
 }
 
 /* Accordion Content */

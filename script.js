@@ -317,3 +317,48 @@ headers.forEach(header => {
   });
 });
 
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const caption = document.getElementById("caption");
+const closeBtn = document.querySelector(".close");
+const galleryItems = document.querySelectorAll(".gallery-item");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+let currentIndex = 0;
+
+// open modal
+galleryItems.forEach((img, index) => {
+  img.addEventListener("click", () => {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    caption.textContent = img.alt;
+    currentIndex = index;
+  });
+});
+
+// close modal
+closeBtn.addEventListener("click", () => modal.style.display = "none");
+
+// navigation
+prevBtn.addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+  modalImg.src = galleryItems[currentIndex].src;
+  caption.textContent = galleryItems[currentIndex].alt;
+});
+
+nextBtn.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % galleryItems.length;
+  modalImg.src = galleryItems[currentIndex].src;
+  caption.textContent = galleryItems[currentIndex].alt;
+});
+
+// click outside to close
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.style.display = "none";
+});
+
+// ESC to close
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") modal.style.display = "none";
+});
