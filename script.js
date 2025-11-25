@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "songs": "songs.html",
       "band": "bands.html",
       "bands": "bands.html",
-      "Michael Jackson": "songs.html",
+      "Michael Jackson": "songs.html#1950s",
       "Madonna": "songs.html",
       "Bob Marley": "songs.html",
       "The Beatles": "songs.html",
