@@ -86,6 +86,70 @@ body {
   box-shadow: 0 0 4px #7a8450;
 }
 
+/* ===== NAV DROPDOWN ===== */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.dropdown-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'Lora', serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000;
+  padding: 6px 8px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.dropdown-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 3px #7a8450;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fdf4e3;
+  border: 1px solid #d68a00;
+  border-radius: 6px;
+  padding: 8px 6px;
+  min-width: 140px;
+  z-index: 1200; /* above navbar */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.dropdown-content.open,
+.dropdown-content[aria-hidden="false"] {
+  display: block;
+}
+
+/* Open dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 6px 10px;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dropdown-link:hover,
+.dropdown-link:focus {
+  background: #feb21a;
+  color: #fff;
+  border-radius: 4px;
+}
+
 /* ===== HEADER ===== */
 .page-header {
   margin-top: 100px; /* creates space under fixed nav */
@@ -386,6 +450,23 @@ mark {
   max-height: 80vh;
   max-width: 80vw;
   border-radius: 12px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2001;
+}
+
+#modalImg {
+  max-width: 90vw;
+  max-height: 85vh;
+  min-width: 600px;
+  min-height: 600px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .close {
@@ -406,7 +487,7 @@ mark {
 
 /* ==== navigation buttons (left/right) ==== */
 .nav-btn {
-  position: absolute;
+  position: fixed;
   top: 50%;
   transform: translateY(-50%);
   background: #d68a00;
@@ -416,6 +497,7 @@ mark {
   font-size: 24px;
   color: black;
   border-radius: 6px;
+  z-index: 2100;
 }
 
 #prevBtn { left: 30px; }
@@ -527,6 +609,12 @@ mark {
   margin-left: 332px;   /* space so content does NOT overlap accordion */
   padding: 20px;
   width: calc(100% - 332px);
+}
+
+/* If no accordion on page, align content to full width */
+body:not(:has(.left-accordion)) .main-box {
+  margin-left: 0;
+  width: 100%;
 }
 .gallery-grid img {
   width: 100%;

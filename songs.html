@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Retro Music - Songs</title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -21,7 +22,14 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="songs.html">Songs</a>
-      <a href="bands.html">Bands</a>
+      <div class="dropdown">
+        <a href="bands.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Bands ▾</a>
+        <div class="dropdown-content" aria-hidden="true">
+          <a class="dropdown-link" href="bands.html#1960s">1960s</a>
+          <a class="dropdown-link" href="bands.html#1970s">1970s</a>
+          <a class="dropdown-link" href="bands.html#1980s">1980s</a>
+        </div>
+      </div>
     </div>
 
     <!-- Small search bar in nav -->
@@ -36,36 +44,9 @@
     <section class="main-box">
       <h1>H1 not visibile?</h1>
       <h2>Welcome to our songs page where you can discover new retro artists and learn more about who they were and what they did.</h2>
-
-      <!-- ===== Combined Search Navigation ===== 
-      <div class="search-container">
-
-        <label for="searchBar" class="visually-hidden">Search</label>
-
-        <input 
-          type="text" 
-          id="searchBar"
-          placeholder="Search for a decade or artist..."
-          aria-label="Search for a decade or artist">
-
-        <button id="clearSearch" aria-label="Clear search">Clear</button>
-
-        <select id="decadeDropdown" aria-label="Filter by artist">
-          <option value="">Filter by Decade</option>
-          <option value="Michael Jackson">Michael Jackson</option>
-          <option value="Madonna">Madonna</option>
-          <option value="Bob Marley">Bob Marley</option>
-          <option value="The Beatles">The Beatles</option>
-          <option value="Elvis Presley">Elvis Presley</option>
-          <option value="The Rolling Stones">The Rolling Stones</option>
-          <option value="Elton John">Elton John</option>
-          <option value="David Bowie">David Bowie</option>
-          <option value="Prince">Prince</option>
-        </select>
-
-      </div>
-      <p></p>
-    -->
+      <p>Use the accordion on the left to explore different artists from the retro era. Click on each artist's name to reveal interesting facts and information about their contributions to music history.</p>
+      <p>Additionally, you can use the search bar and dropdown menu below to quickly find specific artists or filter by decade.</p>
+      <p>On this page and website as a whole you can find a wealth of information about retro music, including artist biographies, song histories, and cultural impact.</p>
     </section>
 
     <!-- ===== LEFT ACCORDION SIDEBAR ===== -->
@@ -212,38 +193,23 @@ Symbol of individuality and musical genius.
     </aside>
 
     <div class="main-box">
-      <p>Content filler text for spacing test</p>
+      <p>A video with retro songs from various decades</p>
       <iframe width="560" height="315" 
         src="https://www.youtube.com/embed/0QKQlf8r7ls" 
         title="YouTube video player" 
         frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allow="encrypted-media; picture-in-picture" 
         allowfullscreen>
       </iframe>
     </div>
+
+    <!-- Spacer for footer -->
+    <div style="height: 100px;"></div>
 
   </main>
 
 </body>
 </html>
-<!-- TO do 
- Songs.html
-add id to each decade section for search and filter.
-between div and class accordion item add id="1950s" 
-Below Main header comment place text.
-
-Whole
-add actual text for most shit
-add images?
-fix search - js i think?
-Find comment on index to fix image
-
-CSS
-fix width of accordion so it doesnt overlap with main content  - bottom of css
-find better fitting colour for accordion?
-
--->
- <!-- ===== FOOTER ===== -->
 <footer>
   <p>&copy; You've reached the bottom of our page. Please scroll up to visit the rest of our website and retro music.</p>
 

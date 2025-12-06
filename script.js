@@ -1,63 +1,34 @@
-// Dropdown controller: single file that toggles dropdowns and closes on outside click/ESC
+// Dropdown controller: handles hover dropdowns with click-outside close support
 document.addEventListener('DOMContentLoaded', () => {
-  const dropdownToggle = document.querySelector('.dropdown-toggle');
-  const dropdownMenu = document.querySelector('.dropdown-content');
-  const dropdownButtonContainer = document.querySelector('.dropdown');
+  const dropdowns = document.querySelectorAll('.dropdown');
 
-  if (!dropdownToggle || !dropdownMenu) return;
+  if (dropdowns.length === 0) return;
 
-  // helper to set open/closed state
-  function setOpen(isOpen) {
-    if (isOpen) {
-      dropdownMenu.classList.add('open');
-      dropdownToggle.setAttribute('aria-expanded', 'true');
-      dropdownMenu.setAttribute('aria-hidden', 'false');
-    } else {
-      dropdownMenu.classList.remove('open');
-      dropdownToggle.setAttribute('aria-expanded', 'false');
-      dropdownMenu.setAttribute('aria-hidden', 'true');
-    }
-  }
-
-  // start closed
-  setOpen(false);
-
-  // toggle on click
-  dropdownToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = dropdownMenu.classList.contains('open');
-    setOpen(!isOpen);
-  });
-
-  // keyboard support on toggle button (Enter or Space)
-  dropdownToggle.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      const isOpen = dropdownMenu.classList.contains('open');
-      setOpen(!isOpen);
-    } else if (e.key === 'Escape') {
-      setOpen(false);
-      dropdownToggle.focus();
-    }
-  });
-
-  // close when pressing Escape while focus is inside the menu
-  dropdownMenu.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      setOpen(false);
-      dropdownToggle.focus();
-    }
-  });
-
-  // close when clicking outside
+  // Close all dropdowns when clicking outside
   document.addEventListener('click', (e) => {
-    if (!dropdownButtonContainer.contains(e.target)) {
-      setOpen(false);
-    }
+    dropdowns.forEach(dropdown => {
+      if (!dropdown.contains(e.target)) {
+        const content = dropdown.querySelector('.dropdown-content');
+        if (content) {
+          content.classList.remove('open');
+          content.setAttribute('aria-hidden', 'true');
+        }
+      }
+    });
   });
 
-  // optional: close on window resize to avoid stuck states
-  window.addEventListener('resize', () => setOpen(false));
+  // Close dropdown on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdowns.forEach(dropdown => {
+        const content = dropdown.querySelector('.dropdown-content');
+        if (content) {
+          content.classList.remove('open');
+          content.setAttribute('aria-hidden', 'true');
+        }
+      });
+    }
+  });
 });
 // ===== SEARCH + DROPDOWN FILTER FUNCTIONALITY =====
 document.addEventListener("DOMContentLoaded", function () {
@@ -187,6 +158,26 @@ document.addEventListener("DOMContentLoaded", () => {
     let firstMatch = null;
     const regex = new RegExp(`(${query})`, "gi");
 
+    // Check if we're on songs.html and search matches an accordion item
+    const accordionItems = document.querySelectorAll(".accordion-item");
+    if (accordionItems.length > 0) {
+      accordionItems.forEach(item => {
+        const header = item.querySelector(".accordion-header");
+        const content = item.querySelector(".accordion-content");
+        if (header && header.textContent.toLowerCase().includes(query)) {
+          // Open the accordion
+          content.classList.add("open");
+          // Highlight the header
+          header.innerHTML = header.innerHTML.replace(regex, "<mark>$1</mark>");
+          // Scroll to it
+          if (!firstMatch) {
+            firstMatch = item;
+          }
+        }
+      });
+    }
+
+    // Also search in regular sections
     searchableSections.forEach(section => {
       if (section.textContent.toLowerCase().includes(query)) {
         section.innerHTML = section.innerHTML.replace(regex, "<mark>$1</mark>");
@@ -212,23 +203,41 @@ document.addEventListener("DOMContentLoaded", () => {
       "songs": "songs.html",
       "band": "bands.html",
       "bands": "bands.html",
-      "Michael Jackson": "songs.html#1950s",
-      "Madonna": "songs.html",
-      "Bob Marley": "songs.html",
-      "The Beatles": "songs.html",
-      "Elvis Presley": "songs.html",
-      "The Rolling Stones": "songs.html",
-      "Elton John": "songs.html",
-      "David Bowie": "songs.html",
-      "Prince": "songs.html",
-      "contact": "bands.html",
+      "michael jackson": "songs.html#Michael Jackson",
+      "madonna": "songs.html#Madonna",
+      "bob marley": "songs.html#Bob Marley",
+      "the beatles": "songs.html#The Beatles",
+      "beatles": "songs.html#The Beatles",
+      "elvis presley": "songs.html#Elvis Presley",
+      "elvis": "songs.html#Elvis Presley",
+      "rolling stones": "songs.html#The Rolling Stones",
+      "elton john": "songs.html#Elton John",
+      "david bowie": "songs.html#David Bowie",
+      "bowie": "songs.html#David Bowie",
+      "prince": "songs.html#Prince",
+      "marvin gaye": "bands.html#1960s",
+      "black sabbath": "bands.html#1970s",
+      "sabbath": "bands.html#1970s",
+      "fleetwood mac": "bands.html#1970s",
+      "ac/dc": "bands.html#1980s",
+      "acdc": "bands.html#1980s",
+      "1960s": "bands.html#1960s",
+      "1970s": "bands.html#1970s",
+      "1980s": "bands.html#1980s",
+      "contact": "index.html#message",
       "form": "index.html#message"
     };
 
-    // Check for redirect match
+    // Normalize redirect keys to lowercase so matching works regardless of input case
+    const normalizedRedirects = {};
     for (const key in redirects) {
+      normalizedRedirects[key.toLowerCase()] = redirects[key];
+    }
+
+    // Check for redirect match using lowercased keys
+    for (const key in normalizedRedirects) {
       if (query.includes(key)) {
-        window.location.href = redirects[key];
+        window.location.href = normalizedRedirects[key];
         return;
       }
     }
@@ -322,6 +331,23 @@ headers.forEach(header => {
   });
 });
 
+// Open accordion item if URL has hash matching an accordion item ID
+document.addEventListener("DOMContentLoaded", () => {
+  const hash = window.location.hash.substring(1); // Remove the #
+  if (hash) {
+    const accordionItem = document.getElementById(hash);
+    if (accordionItem && accordionItem.classList.contains("accordion-item")) {
+      const content = accordionItem.querySelector(".accordion-content");
+      if (content) {
+        content.classList.add("open");
+        setTimeout(() => {
+          accordionItem.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 100);
+      }
+    }
+  }
+});
+
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImg");
 const caption = document.getElementById("caption");
@@ -332,15 +358,29 @@ const nextBtn = document.getElementById("nextBtn");
 
 let currentIndex = 0;
 
-// open modal
+// open modal for gallery images
 galleryItems.forEach((img, index) => {
   img.addEventListener("click", () => {
     modal.style.display = "block";
     modalImg.src = img.src;
     caption.textContent = img.alt;
     currentIndex = index;
+    prevBtn.style.display = "block";
+    nextBtn.style.display = "block";
   });
 });
+
+// open modal for standalone Elvis image
+const elvisTrigger = document.getElementById("beatlesModalTrigger");
+if (elvisTrigger) {
+  elvisTrigger.addEventListener("click", () => {
+    modal.style.display = "block";
+    modalImg.src = elvisTrigger.src;
+    caption.textContent = elvisTrigger.alt;
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+  });
+}
 
 // close modal
 closeBtn.addEventListener("click", () => modal.style.display = "none");
@@ -366,4 +406,18 @@ modal.addEventListener("click", (e) => {
 // ESC to close
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") modal.style.display = "none";
+});
+// Specific modal for Elvis Presley image
+document.addEventListener('DOMContentLoaded', function() {
+  var elvisTrigger = document.getElementById('beatlesModalTrigger');
+  var modal = document.getElementById('imageModal');
+  var modalImg = document.getElementById('modalImg');
+  var caption = document.getElementById('caption');
+  if (elvisTrigger && modal && modalImg && caption) {
+    elvisTrigger.addEventListener('click', function() {
+      modal.style.display = 'block';
+      modalImg.src = elvisTrigger.src;
+      caption.textContent = elvisTrigger.alt;
+    });
+  }
 });
