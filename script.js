@@ -199,6 +199,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ======== Cross-page keywords ========
     const redirects = {
+      "home": "index.html",
+      "homepage": "index.html",
       "song": "songs.html",
       "songs": "songs.html",
       "band": "bands.html",
